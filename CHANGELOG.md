@@ -1,3 +1,11 @@
+## 1.0.2
+
+- Fix Windows build: add `BUILD_SHARED_LIBS` and `BUILDING_H3` defines for DLL symbol export
+- Fix Windows build: skip `libm` linking (math is part of the C runtime on Windows)
+- Remove deprecated `avoid_returning_null_for_future` lint rule
+- Add CI/CD: automated testing on Linux, macOS, Windows, and Chrome
+- Add automated publishing to pub.dev via GitHub Actions OIDC
+
 ## 1.0.1
 
 - Web support via h3-js and `dart:js_interop`
