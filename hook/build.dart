@@ -68,7 +68,8 @@ void main(List<String> args) async {
       std: 'c11',
       language: Language.c,
       optimizationLevel: OptimizationLevel.o3,
-      libraries: ['m'],
+      // libm is needed on Unix; Windows includes math in the C runtime.
+      libraries: Platform.isWindows ? [] : ['m'],
     );
 
     await builder.run(input: input, output: output, logger: logger);
