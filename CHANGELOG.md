@@ -1,3 +1,7 @@
+## 1.0.3
+
+- Update README with badges and structured platform support documentation
+
 ## 1.0.2
 
 - Fix Windows build: add `BUILD_SHARED_LIBS` and `BUILDING_H3` defines for DLL symbol export
