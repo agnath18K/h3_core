@@ -33,7 +33,7 @@ Wraps **H3 v4.4.1** via `dart:ffi` on native platforms and **h3-js** via `dart:j
 
 ```yaml
 dependencies:
-  h3_core: ^1.0.2
+  h3_core: ^1.0.3
 ```
 
 ## Quick Start
