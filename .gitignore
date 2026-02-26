@@ -30,8 +30,6 @@ migrate_working_dir/
 /build/
 /coverage/
 
-# Large files not needed in monorepo
+# Large files not needed in standalone repo
 h3-4.4.1.zip
 H3_FLUTTER_ARCHITECTURE.md
-example/
-.github/
