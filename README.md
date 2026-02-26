@@ -1,5 +1,10 @@
 # h3_core
 
+[![pub package](https://img.shields.io/pub/v/h3_core.svg)](https://pub.dev/packages/h3_core)
+[![CI](https://github.com/agnath18K/h3_core/actions/workflows/ci.yml/badge.svg)](https://github.com/agnath18K/h3_core/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![H3 Version](https://img.shields.io/badge/H3-v4.4.1-green.svg)](https://github.com/uber/h3/releases/tag/v4.4.1)
+
 Dart/Flutter bindings for the [H3](https://h3geo.org) geospatial indexing library.
 
 Wraps **H3 v4.4.1** via `dart:ffi` on native platforms and **h3-js** via `dart:js_interop` on web. Same API on all platforms.
@@ -7,17 +12,28 @@ Wraps **H3 v4.4.1** via `dart:ffi` on native platforms and **h3-js** via `dart:j
 ## Features
 
 - Full H3 v4.4.1 API (~80 functions)
-- Native: zero-overhead FFI calls via Build Hooks
+- Native: zero-overhead FFI calls via Build Hooks (compiles C natively — no pre-built binaries)
 - Web: h3-js interop via `dart:js_interop`
 - Single package, identical API on all platforms
-- Type-safe Dart API with extension types
+- Type-safe Dart API with extension types (`H3Index`, `LatLng`, `CellBoundary`)
 - Async wrappers for heavy operations
+
+## Platform Support
+
+| Platform | Backend | CI Tested |
+|----------|---------|-----------|
+| Android  | dart:ffi (C) | via macOS build |
+| iOS      | dart:ffi (C) | via macOS build |
+| macOS    | dart:ffi (C) | macOS stable |
+| Linux    | dart:ffi (C) | Ubuntu stable + beta |
+| Windows  | dart:ffi (C) | Windows stable |
+| Web      | h3-js (JS)   | Chrome stable |
 
 ## Installation
 
 ```yaml
 dependencies:
-  h3_core: ^1.0.0
+  h3_core: ^1.0.2
 ```
 
 ## Quick Start
@@ -97,17 +113,6 @@ Add the h3-js script tag to your `web/index.html` before the Flutter bootstrap:
 <script src="https://cdn.jsdelivr.net/npm/h3-js@4/dist/h3-js.umd.js"></script>
 <script src="flutter_bootstrap.js" async></script>
 ```
-
-## Platform Support
-
-| Platform | Backend | Status |
-|----------|---------|--------|
-| Android  | dart:ffi (C) | Supported |
-| iOS      | dart:ffi (C) | Supported |
-| macOS    | dart:ffi (C) | Supported |
-| Linux    | dart:ffi (C) | Supported |
-| Windows  | dart:ffi (C) | Supported |
-| Web      | h3-js (JS)   | Supported |
 
 ## Versioning
 
