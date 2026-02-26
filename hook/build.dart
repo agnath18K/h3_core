@@ -64,6 +64,11 @@ void main(List<String> args) async {
         'H3_VERSION_MAJOR': _h3VersionMajor,
         'H3_VERSION_MINOR': _h3VersionMinor,
         'H3_VERSION_PATCH': _h3VersionPatch,
+        // Windows DLL needs these for __declspec(dllexport) in h3api.h
+        if (Platform.isWindows) ...{
+          'BUILD_SHARED_LIBS': '1',
+          'BUILDING_H3': '1',
+        },
       },
       std: 'c11',
       language: Language.c,
