@@ -1,5 +1,5 @@
 name: h3_core
-version: 1.0.3
+version: 1.0.4
 description: >-
   Dart/Flutter bindings for the H3 geospatial indexing library.
   Uses dart:ffi on native platforms, h3-js on web.

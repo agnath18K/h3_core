@@ -33,7 +33,7 @@ Wraps **H3 v4.4.1** via `dart:ffi` on native platforms and **h3-js** via `dart:j
 
 ```yaml
 dependencies:
-  h3_core: ^1.0.3
+  h3_core: ^1.0.4
 ```
 
 ## Quick Start
@@ -110,7 +110,7 @@ print(isPentagon(cell));    // false
 Add the h3-js script tag to your `web/index.html` before the Flutter bootstrap:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/h3-js@4/dist/h3-js.umd.js"></script>
+<script src="https://unpkg.com/h3-js"></script>
 <script src="flutter_bootstrap.js" async></script>
 ```
 
