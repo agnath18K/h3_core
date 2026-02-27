@@ -13,6 +13,8 @@ import 'models/lat_lng.dart';
 
 // Indexing
 
+/// Converts a [latLng] coordinate to the H3 cell index at the given
+/// [resolution] (0–15).
 H3Index latLngToCell(LatLng latLng, int resolution) {
   return using((Arena arena) {
     final ll = arena<c.LatLng>();
@@ -25,6 +27,7 @@ H3Index latLngToCell(LatLng latLng, int resolution) {
   });
 }
 
+/// Returns the center coordinate of the given H3 [cell].
 LatLng cellToLatLng(H3Index cell) {
   return using((Arena arena) {
     final ll = arena<c.LatLng>();
@@ -33,6 +36,7 @@ LatLng cellToLatLng(H3Index cell) {
   });
 }
 
+/// Returns the boundary vertices of the given H3 [cell].
 CellBoundary cellToBoundary(H3Index cell) {
   return using((Arena arena) {
     final cb = arena<c.CellBoundary>();
@@ -54,18 +58,25 @@ CellBoundary cellToBoundary(H3Index cell) {
 
 // Inspection
 
+/// Returns the resolution (0–15) of the given H3 index.
 int getResolution(H3Index h) => c.getResolution(h.toInt());
 
+/// Returns the base cell number (0–121) of the given H3 index.
 int getBaseCellNumber(H3Index h) => c.getBaseCellNumber(h.toInt());
 
+/// Returns whether [h] is a valid H3 cell index.
 bool isValidCell(H3Index h) => c.isValidCell(h.toInt()) == 1;
 
+/// Returns whether [h] is any valid H3 index (cell, edge, or vertex).
 bool isValidIndex(H3Index h) => c.isValidIndex(h.toInt()) == 1;
 
+/// Returns whether [h] is a pentagon cell.
 bool isPentagon(H3Index h) => c.isPentagon(h.toInt()) == 1;
 
+/// Returns whether [h] has Class III resolution orientation.
 bool isResClassIII(H3Index h) => c.isResClassIII(h.toInt()) == 1;
 
+/// Returns the icosahedron face(s) that the given cell intersects.
 List<int> getIcosahedronFaces(H3Index h) {
   return using((Arena arena) {
     final maxOut = arena<Int>();
@@ -84,11 +95,14 @@ List<int> getIcosahedronFaces(H3Index h) {
   });
 }
 
+/// Returns whether [edge] is a valid H3 directed edge index.
 bool isValidDirectedEdge(H3Index edge) =>
     c.isValidDirectedEdge(edge.toInt()) == 1;
 
+/// Returns whether [vertex] is a valid H3 vertex index.
 bool isValidVertex(H3Index vertex) => c.isValidVertex(vertex.toInt()) == 1;
 
+/// Returns the direction digit at the given [resolution] for index [h].
 int getIndexDigit(H3Index h, int resolution) {
   return using((Arena arena) {
     final out = arena<Int>();
@@ -97,6 +111,8 @@ int getIndexDigit(H3Index h, int resolution) {
   });
 }
 
+/// Constructs an H3 cell index from [res], [baseCellNumber], and direction
+/// [digits].
 H3Index constructCell(int res, int baseCellNumber, List<int> digits) {
   return using((Arena arena) {
     final digitsPtr = arena<Int>(digits.length);
@@ -111,6 +127,8 @@ H3Index constructCell(int res, int baseCellNumber, List<int> digits) {
 
 // String conversion
 
+/// Parses a [hex] string into an [H3Index], throwing [H3Exception] on
+/// invalid input.
 H3Index stringToH3(String hex) {
   return using((Arena arena) {
     final str = hex.toNativeUtf8(allocator: arena);
@@ -120,6 +138,7 @@ H3Index stringToH3(String hex) {
   });
 }
 
+/// Returns the hex string representation of the given H3 index.
 String h3ToString(H3Index h) {
   return using((Arena arena) {
     final buf = arena<Char>(17);
@@ -130,6 +149,7 @@ String h3ToString(H3Index h) {
 
 // Traversal
 
+/// Returns all cells within [k] grid steps of [origin] (filled disk).
 List<H3Index> gridDisk(H3Index origin, int k) {
   return using((Arena arena) {
     final sizeOut = arena<Int64>();
@@ -146,6 +166,7 @@ List<H3Index> gridDisk(H3Index origin, int k) {
   });
 }
 
+/// Returns cells within [k] steps of [origin] mapped to their grid distance.
 Map<H3Index, int> gridDiskDistances(H3Index origin, int k) {
   return using((Arena arena) {
     final sizeOut = arena<Int64>();
@@ -166,6 +187,7 @@ Map<H3Index, int> gridDiskDistances(H3Index origin, int k) {
   });
 }
 
+/// Returns cells exactly [k] grid steps from [origin] (hollow ring).
 List<H3Index> gridRing(H3Index origin, int k) {
   return using((Arena arena) {
     final sizeOut = arena<Int64>();
@@ -182,6 +204,7 @@ List<H3Index> gridRing(H3Index origin, int k) {
   });
 }
 
+/// Returns the minimum grid distance between [origin] and [destination].
 int gridDistance(H3Index origin, H3Index destination) {
   return using((Arena arena) {
     final out = arena<Int64>();
@@ -190,6 +213,7 @@ int gridDistance(H3Index origin, H3Index destination) {
   });
 }
 
+/// Returns the cells along the shortest grid path from [start] to [end].
 List<H3Index> gridPathCells(H3Index start, H3Index end) {
   return using((Arena arena) {
     final sizeOut = arena<Int64>();
@@ -205,6 +229,7 @@ List<H3Index> gridPathCells(H3Index start, H3Index end) {
 
 // Hierarchy
 
+/// Returns the parent cell of [cell] at the coarser [parentRes].
 H3Index cellToParent(H3Index cell, int parentRes) {
   return using((Arena arena) {
     final out = arena<Uint64>();
@@ -213,6 +238,7 @@ H3Index cellToParent(H3Index cell, int parentRes) {
   });
 }
 
+/// Returns the children of [cell] at the finer [childRes].
 List<H3Index> cellToChildren(H3Index cell, int childRes) {
   return using((Arena arena) {
     final sizeOut = arena<Int64>();
@@ -226,6 +252,7 @@ List<H3Index> cellToChildren(H3Index cell, int childRes) {
   });
 }
 
+/// Returns the center child of [cell] at the finer [childRes].
 H3Index cellToCenterChild(H3Index cell, int childRes) {
   return using((Arena arena) {
     final out = arena<Uint64>();
@@ -234,6 +261,7 @@ H3Index cellToCenterChild(H3Index cell, int childRes) {
   });
 }
 
+/// Returns the position of [child] within its parent at [parentRes].
 int cellToChildPos(H3Index child, int parentRes) {
   return using((Arena arena) {
     final out = arena<Int64>();
@@ -242,6 +270,7 @@ int cellToChildPos(H3Index child, int parentRes) {
   });
 }
 
+/// Returns the child cell at [childPos] within [parent] at [childRes].
 H3Index childPosToCell(int childPos, H3Index parent, int childRes) {
   return using((Arena arena) {
     final out = arena<Uint64>();
@@ -250,6 +279,7 @@ H3Index childPosToCell(int childPos, H3Index parent, int childRes) {
   });
 }
 
+/// Compacts a set of [cells] by replacing complete groups with their parent.
 List<H3Index> compactCells(List<H3Index> cells) {
   return using((Arena arena) {
     final h3Set = arena<Uint64>(cells.length);
@@ -267,6 +297,7 @@ List<H3Index> compactCells(List<H3Index> cells) {
   });
 }
 
+/// Expands compacted [cells] to the given [resolution].
 List<H3Index> uncompactCells(List<H3Index> cells, int resolution) {
   return using((Arena arena) {
     final h3Set = arena<Uint64>(cells.length);
@@ -292,6 +323,7 @@ List<H3Index> uncompactCells(List<H3Index> cells, int resolution) {
 
 // Directed edges
 
+/// Returns whether [origin] and [destination] share an edge.
 bool areNeighborCells(H3Index origin, H3Index destination) {
   return using((Arena arena) {
     final out = arena<Int>();
@@ -300,6 +332,7 @@ bool areNeighborCells(H3Index origin, H3Index destination) {
   });
 }
 
+/// Returns the directed edge from [origin] to [destination].
 H3Index cellsToDirectedEdge(H3Index origin, H3Index destination) {
   return using((Arena arena) {
     final out = arena<Uint64>();
@@ -310,6 +343,7 @@ H3Index cellsToDirectedEdge(H3Index origin, H3Index destination) {
   });
 }
 
+/// Returns the origin cell of the directed [edge].
 H3Index getDirectedEdgeOrigin(H3Index edge) {
   return using((Arena arena) {
     final out = arena<Uint64>();
@@ -318,6 +352,7 @@ H3Index getDirectedEdgeOrigin(H3Index edge) {
   });
 }
 
+/// Returns the destination cell of the directed [edge].
 H3Index getDirectedEdgeDestination(H3Index edge) {
   return using((Arena arena) {
     final out = arena<Uint64>();
@@ -326,6 +361,7 @@ H3Index getDirectedEdgeDestination(H3Index edge) {
   });
 }
 
+/// Returns the origin and destination cells of the directed [edge].
 List<H3Index> directedEdgeToCells(H3Index edge) {
   return using((Arena arena) {
     final out = arena<Uint64>(2);
@@ -334,6 +370,7 @@ List<H3Index> directedEdgeToCells(H3Index edge) {
   });
 }
 
+/// Returns all directed edges originating from [origin].
 List<H3Index> originToDirectedEdges(H3Index origin) {
   return using((Arena arena) {
     final out = arena<Uint64>(6);
@@ -345,6 +382,7 @@ List<H3Index> originToDirectedEdges(H3Index origin) {
   });
 }
 
+/// Returns the boundary vertices of the directed [edge].
 CellBoundary directedEdgeToBoundary(H3Index edge) {
   return using((Arena arena) {
     final cb = arena<c.CellBoundary>();
@@ -366,6 +404,7 @@ CellBoundary directedEdgeToBoundary(H3Index edge) {
 
 // Vertices
 
+/// Returns the vertex at index [vertexNum] (0–5) of the [cell].
 H3Index cellToVertex(H3Index cell, int vertexNum) {
   return using((Arena arena) {
     final out = arena<Uint64>();
@@ -374,6 +413,7 @@ H3Index cellToVertex(H3Index cell, int vertexNum) {
   });
 }
 
+/// Returns all vertices of the given [cell].
 List<H3Index> cellToVertexes(H3Index cell) {
   return using((Arena arena) {
     final out = arena<Uint64>(6);
@@ -385,6 +425,7 @@ List<H3Index> cellToVertexes(H3Index cell) {
   });
 }
 
+/// Returns the coordinates of the given [vertex].
 LatLng vertexToLatLng(H3Index vertex) {
   return using((Arena arena) {
     final ll = arena<c.LatLng>();
@@ -395,6 +436,7 @@ LatLng vertexToLatLng(H3Index vertex) {
 
 // Measurements
 
+/// Returns the great-circle distance between [a] and [b] in kilometers.
 double greatCircleDistanceKm(LatLng a, LatLng b) {
   return using((Arena arena) {
     final aPtr = arena<c.LatLng>();
@@ -407,6 +449,7 @@ double greatCircleDistanceKm(LatLng a, LatLng b) {
   });
 }
 
+/// Returns the great-circle distance between [a] and [b] in meters.
 double greatCircleDistanceM(LatLng a, LatLng b) {
   return using((Arena arena) {
     final aPtr = arena<c.LatLng>();
@@ -419,6 +462,7 @@ double greatCircleDistanceM(LatLng a, LatLng b) {
   });
 }
 
+/// Returns the exact area of the [cell] in km².
 double cellAreaKm2(H3Index cell) {
   return using((Arena arena) {
     final out = arena<Double>();
@@ -427,6 +471,7 @@ double cellAreaKm2(H3Index cell) {
   });
 }
 
+/// Returns the exact area of the [cell] in m².
 double cellAreaM2(H3Index cell) {
   return using((Arena arena) {
     final out = arena<Double>();
@@ -435,6 +480,7 @@ double cellAreaM2(H3Index cell) {
   });
 }
 
+/// Returns the exact length of the directed [edge] in kilometers.
 double edgeLengthKm(H3Index edge) {
   return using((Arena arena) {
     final out = arena<Double>();
@@ -443,6 +489,7 @@ double edgeLengthKm(H3Index edge) {
   });
 }
 
+/// Returns the exact length of the directed [edge] in meters.
 double edgeLengthM(H3Index edge) {
   return using((Arena arena) {
     final out = arena<Double>();
@@ -451,6 +498,7 @@ double edgeLengthM(H3Index edge) {
   });
 }
 
+/// Returns the average hexagon area in km² at the given [resolution].
 double getHexagonAreaAvgKm2(int resolution) {
   return using((Arena arena) {
     final out = arena<Double>();
@@ -459,6 +507,7 @@ double getHexagonAreaAvgKm2(int resolution) {
   });
 }
 
+/// Returns the average hexagon area in m² at the given [resolution].
 double getHexagonAreaAvgM2(int resolution) {
   return using((Arena arena) {
     final out = arena<Double>();
@@ -467,6 +516,7 @@ double getHexagonAreaAvgM2(int resolution) {
   });
 }
 
+/// Returns the average hexagon edge length in km at the given [resolution].
 double getHexagonEdgeLengthAvgKm(int resolution) {
   return using((Arena arena) {
     final out = arena<Double>();
@@ -475,6 +525,8 @@ double getHexagonEdgeLengthAvgKm(int resolution) {
   });
 }
 
+/// Returns the average hexagon edge length in meters at the given
+/// [resolution].
 double getHexagonEdgeLengthAvgM(int resolution) {
   return using((Arena arena) {
     final out = arena<Double>();
@@ -483,6 +535,7 @@ double getHexagonEdgeLengthAvgM(int resolution) {
   });
 }
 
+/// Returns the total number of cells at the given [resolution].
 int getNumCells(int resolution) {
   return using((Arena arena) {
     final out = arena<Int64>();
@@ -493,6 +546,7 @@ int getNumCells(int resolution) {
 
 // Coordinate systems
 
+/// Converts [cell] to local IJ coordinates relative to [origin].
 CoordIJ cellToLocalIj(H3Index origin, H3Index cell) {
   return using((Arena arena) {
     final ij = arena<c.CoordIJ>();
@@ -501,6 +555,7 @@ CoordIJ cellToLocalIj(H3Index origin, H3Index cell) {
   });
 }
 
+/// Converts local [ij] coordinates relative to [origin] back to an H3 cell.
 H3Index localIjToCell(H3Index origin, CoordIJ ij) {
   return using((Arena arena) {
     final ijPtr = arena<c.CoordIJ>();
@@ -514,6 +569,7 @@ H3Index localIjToCell(H3Index origin, CoordIJ ij) {
 
 // Regions
 
+/// Returns all cells whose centers are within the [polygon] at [resolution].
 List<H3Index> polygonToCells(GeoPolygon polygon, int resolution) {
   return using((Arena arena) {
     final gp = arena<c.GeoPolygon>();
@@ -558,6 +614,7 @@ List<H3Index> polygonToCells(GeoPolygon polygon, int resolution) {
   });
 }
 
+/// Returns cells within the [polygon] using the specified containment [mode].
 List<H3Index> polygonToCellsExperimental(
   GeoPolygon polygon,
   int resolution, {
@@ -611,6 +668,8 @@ List<H3Index> polygonToCellsExperimental(
   });
 }
 
+/// Returns the outlines of a set of [cells] as a GeoJSON-style
+/// multi-polygon.
 List<List<List<LatLng>>> cellsToMultiPolygon(List<H3Index> cells) {
   return using((Arena arena) {
     final h3Set = arena<Uint64>(cells.length);
@@ -664,8 +723,10 @@ List<List<List<LatLng>>> _extractMultiPolygon(
 
 // Utilities
 
+/// Returns the number of resolution-0 cells (always 122).
 int res0CellCount() => c.res0CellCount();
 
+/// Returns all 122 resolution-0 cells.
 List<H3Index> getRes0Cells() {
   return using((Arena arena) {
     final out = arena<Uint64>(122);
@@ -674,8 +735,10 @@ List<H3Index> getRes0Cells() {
   });
 }
 
+/// Returns the number of pentagons per resolution (always 12).
 int pentagonCount() => c.pentagonCount();
 
+/// Returns all 12 pentagon cells at the given [resolution].
 List<H3Index> getPentagons(int resolution) {
   return using((Arena arena) {
     final out = arena<Uint64>(12);
@@ -684,16 +747,28 @@ List<H3Index> getPentagons(int resolution) {
   });
 }
 
+/// Version constants for the h3_core package and the underlying H3 C library.
 abstract final class H3Version {
+  /// The h3_core Dart package version.
   static const String package = '1.0.1';
+
+  /// The H3 C library version string.
   static const String native = '4.4.1';
+
+  /// The H3 C library major version.
   static const int major = 4;
+
+  /// The H3 C library minor version.
   static const int minor = 4;
+
+  /// The H3 C library patch version.
   static const int patch = 1;
 }
 
 // Async — runs on isolate to keep the UI thread free.
 
+/// Async version of [polygonToCells]; runs on an isolate to avoid blocking
+/// the UI thread.
 Future<List<H3Index>> polygonToCellsAsync(
   GeoPolygon polygon,
   int resolution,
@@ -701,14 +776,20 @@ Future<List<H3Index>> polygonToCellsAsync(
   return Isolate.run(() => polygonToCells(polygon, resolution));
 }
 
+/// Async version of [gridDisk]; runs on an isolate to avoid blocking the
+/// UI thread.
 Future<List<H3Index>> gridDiskAsync(H3Index origin, int k) async {
   return Isolate.run(() => gridDisk(origin, k));
 }
 
+/// Async version of [compactCells]; runs on an isolate to avoid blocking
+/// the UI thread.
 Future<List<H3Index>> compactCellsAsync(List<H3Index> cells) async {
   return Isolate.run(() => compactCells(cells));
 }
 
+/// Async version of [uncompactCells]; runs on an isolate to avoid blocking
+/// the UI thread.
 Future<List<H3Index>> uncompactCellsAsync(
   List<H3Index> cells,
   int resolution,
