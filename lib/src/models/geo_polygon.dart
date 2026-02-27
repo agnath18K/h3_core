@@ -15,10 +15,15 @@ enum ContainmentMode {
   overlappingBbox,
 }
 
-/// Polygon for region operations.
+/// Polygon defined by an exterior ring and optional holes, for region
+/// operations such as [polygonToCells].
 class GeoPolygon {
+  /// The exterior ring of the polygon as a list of coordinates.
   final List<LatLng> exterior;
+
+  /// Optional interior rings (holes) to exclude from the polygon.
   final List<List<LatLng>> holes;
 
+  /// Creates a [GeoPolygon] with an [exterior] ring and optional [holes].
   const GeoPolygon(this.exterior, [this.holes = const []]);
 }

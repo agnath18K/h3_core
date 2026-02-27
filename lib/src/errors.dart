@@ -1,10 +1,18 @@
-/// Base exception for all H3 errors.
+/// Exception thrown when an H3 operation fails.
+///
+/// Each error has a numeric [code] corresponding to the H3 C library error
+/// codes and a human-readable [message].
 class H3Exception implements Exception {
+  /// The H3 error code (1–19).
   final int code;
+
+  /// A human-readable description of the error.
   final String message;
 
+  /// Creates an [H3Exception] with the given [code] and [message].
   const H3Exception(this.code, this.message);
 
+  /// Creates an [H3Exception] from an H3 C library error [code].
   factory H3Exception.fromCode(int code) {
     return switch (code) {
       1 => const H3Exception(1, 'Operation failed'),
