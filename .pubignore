@@ -1,0 +1,20 @@
+# Debug logs
+firebase-debug.log
+
+# Flutter example app scaffolding (only example/example.dart is needed)
+example/android/
+example/ios/
+example/linux/
+example/macos/
+example/windows/
+example/web/
+example/lib/
+example/integration_test/
+example/.gitignore
+example/.idea/
+example/.dart_tool/
+example/pubspec.lock
+example/pubspec.yaml
+example/analysis_options.yaml
+example/README.md
+example/*.iml

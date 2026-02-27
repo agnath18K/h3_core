@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![H3 Version](https://img.shields.io/badge/H3-v4.4.1-green.svg)](https://github.com/uber/h3/releases/tag/v4.4.1)
 
-Dart/Flutter bindings for the [H3](https://h3geo.org) geospatial indexing library.
+Dart/Flutter bindings for the [H3](https://h3geo.org) geospatial indexing library, originally developed at [Uber](https://github.com/uber/h3).
 
 Wraps **H3 v4.4.1** via `dart:ffi` on native platforms and **h3-js** via `dart:js_interop` on web. Same API on all platforms.
 
