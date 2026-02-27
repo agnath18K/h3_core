@@ -1,3 +1,7 @@
+## 1.0.4
+
+- Switch h3-js CDN from jsDelivr to unpkg
+
 ## 1.0.3
 
 - Update README with badges and structured platform support documentation
