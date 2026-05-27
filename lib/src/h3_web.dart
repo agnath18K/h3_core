@@ -594,7 +594,7 @@ List<H3Index> getPentagons(int resolution) {
 /// Version constants for the h3_core package and the underlying H3 C library.
 abstract final class H3Version {
   /// The h3_core Dart package version.
-  static const String package = '1.0.5';
+  static const String package = '1.0.6';
 
   /// The H3 C library version string.
   static const String native = '4.5.0';

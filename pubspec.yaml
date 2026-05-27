@@ -1,5 +1,5 @@
 name: h3_core
-version: 1.0.5
+version: 1.0.6
 description: >-
   Dart/Flutter bindings for Uber's H3 hexagonal geospatial indexing library.
   Uses dart:ffi on native platforms and h3-js on web — same API everywhere.
