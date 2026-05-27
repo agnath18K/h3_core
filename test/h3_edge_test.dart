@@ -56,6 +56,19 @@ void main() {
       final boundary = directedEdgeToBoundary(edge);
       expect(boundary.vertices, hasLength(2));
     });
+
+    test(
+      'reverseDirectedEdge swaps origin and destination',
+      () {
+        final reversed = reverseDirectedEdge(edge);
+        expect(isValidDirectedEdge(reversed), isTrue);
+        expect(getDirectedEdgeOrigin(reversed), equals(neighbor));
+        expect(getDirectedEdgeDestination(reversed), equals(sf));
+        expect(reverseDirectedEdge(reversed), equals(edge));
+      },
+      // h3-js does not yet expose reverseDirectedEdge (latest is 4.4.0).
+      testOn: 'vm',
+    );
   });
 
   group('originToDirectedEdges', () {

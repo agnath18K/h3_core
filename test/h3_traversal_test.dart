@@ -97,5 +97,13 @@ void main() {
       final dist = gridDistance(sf, target);
       expect(path, hasLength(dist + 1));
     });
+
+    test('bidirectional: reverse(path(a, b)) == path(b, a)', () {
+      // Since H3 v4.5.0, gridPathCells is bidirectional.
+      final target = gridRing(sf, 3).first;
+      final forward = gridPathCells(sf, target);
+      final backward = gridPathCells(target, sf);
+      expect(backward, equals(forward.reversed.toList()));
+    });
   });
 }

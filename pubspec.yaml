@@ -1,10 +1,13 @@
 name: h3_core
-version: 1.0.4
+version: 1.0.5
 description: >-
-  Dart/Flutter bindings for the H3 geospatial indexing library.
-  Uses dart:ffi on native platforms, h3-js on web.
+  Dart/Flutter bindings for Uber's H3 hexagonal geospatial indexing library.
+  Uses dart:ffi on native platforms and h3-js on web — same API everywhere.
 repository: https://github.com/agnath18K/h3_core
-topics: [h3, geospatial, hexagonal, indexing, geo]
+homepage: https://github.com/agnath18K/h3_core
+issue_tracker: https://github.com/agnath18K/h3_core/issues
+documentation: https://pub.dev/documentation/h3_core/latest/
+topics: [h3, geospatial, ffi, mapping, hexagonal]
 
 environment:
   sdk: '>=3.10.0 <4.0.0'

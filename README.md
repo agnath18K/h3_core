@@ -3,15 +3,17 @@
 [![pub package](https://img.shields.io/pub/v/h3_core.svg)](https://pub.dev/packages/h3_core)
 [![CI](https://github.com/agnath18K/h3_core/actions/workflows/ci.yml/badge.svg)](https://github.com/agnath18K/h3_core/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![H3 Version](https://img.shields.io/badge/H3-v4.4.1-green.svg)](https://github.com/uber/h3/releases/tag/v4.4.1)
+[![H3 Version](https://img.shields.io/badge/H3-v4.5.0-green.svg)](https://github.com/uber/h3/releases/tag/v4.5.0)
 
 Dart/Flutter bindings for the [H3](https://h3geo.org) geospatial indexing library, originally developed at [Uber](https://github.com/uber/h3).
 
-Wraps **H3 v4.4.1** via `dart:ffi` on native platforms and **h3-js** via `dart:js_interop` on web. Same API on all platforms.
+Hexagonal geospatial indexing for Dart and Flutter — Uber's H3 via FFI on native and h3-js on web. Useful for mapping, GIS, spatial analytics, ride-sharing geofencing, and a geohash alternative.
+
+Wraps **H3 v4.5.0** via `dart:ffi` on native platforms and **h3-js** via `dart:js_interop` on web. Same API on all platforms.
 
 ## Features
 
-- Full H3 v4.4.1 API (~80 functions)
+- Full H3 v4.5.0 API (~80 functions, including `reverseDirectedEdge`)
 - Native: zero-overhead FFI calls via Build Hooks (compiles C natively — no pre-built binaries)
 - Web: h3-js interop via `dart:js_interop`
 - Single package, identical API on all platforms
@@ -116,7 +118,7 @@ Add the h3-js script tag to your `web/index.html` before the Flutter bootstrap:
 
 ## Versioning
 
-Package version uses its own semver. Wraps H3 C library v4.4.1.
+Package version uses its own semver. Wraps H3 C library v4.5.0.
 
 ## License
 

@@ -1,3 +1,14 @@
+## 1.0.5
+
+- Upgrade vendored H3 C library from 4.4.1 → 4.5.0 ([upstream notes](https://github.com/uber/h3/releases/tag/v4.5.0))
+- Add `reverseDirectedEdge` — returns a directed edge with origin and destination swapped (FFI + stub; throws `UnsupportedError` on web pending h3-js 4.5)
+- `gridPathCells` is now bidirectional: `gridPathCells(a, b)` reversed equals `gridPathCells(b, a)` (H3 v4.5.0 behavior change)
+- `cellsToLinkedMultiPolygon` / `cellsToMultiPolygon` now surface `E_CELL_INVALID`, `E_RES_MISMATCH`, and `E_DOMAIN` for invalid input, mixed resolutions, and duplicate cells (previously undefined output)
+- Internal: refactored indexing (now uses `Vec3d`) and CoordIJK (now inlineable) from upstream — transparent to callers
+- Regenerate FFI bindings against H3 v4.5.0 headers
+- Refresh README badges and version references
+- Expand pub.dev metadata: add `homepage`, `issue_tracker`, `documentation`, refined topics for better discoverability
+
 ## 1.0.4
 
 - Switch h3-js CDN from jsDelivr to unpkg

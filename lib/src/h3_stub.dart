@@ -135,6 +135,11 @@ List<H3Index> originToDirectedEdges(H3Index origin) => _unsupported();
 /// Returns the boundary vertices of the directed [edge].
 CellBoundary directedEdgeToBoundary(H3Index edge) => _unsupported();
 
+/// Returns the directed edge with origin and destination swapped.
+///
+/// Since H3 v4.5.0.
+H3Index reverseDirectedEdge(H3Index edge) => _unsupported();
+
 // Vertices
 
 /// Returns the vertex at index [vertexNum] (0–5) of the [cell].
@@ -227,19 +232,19 @@ List<H3Index> getPentagons(int resolution) => _unsupported();
 /// Version constants for the h3_core package and the underlying H3 C library.
 abstract final class H3Version {
   /// The h3_core Dart package version.
-  static const String package = '1.0.1';
+  static const String package = '1.0.5';
 
   /// The H3 C library version string.
-  static const String native = '4.4.1';
+  static const String native = '4.5.0';
 
   /// The H3 C library major version.
   static const int major = 4;
 
   /// The H3 C library minor version.
-  static const int minor = 4;
+  static const int minor = 5;
 
   /// The H3 C library patch version.
-  static const int patch = 1;
+  static const int patch = 0;
 }
 
 // Async wrappers
