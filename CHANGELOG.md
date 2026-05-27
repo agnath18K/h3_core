@@ -1,6 +1,7 @@
 ## 1.0.6
 
 - Move repository to the `wayqteam` GitHub organization; refresh `pubspec.yaml` URLs (`repository`, `homepage`, `issue_tracker`) and README CI badge
+- Bump dependencies to latest majors: `hooks ^2.0.0`, `code_assets ^1.1.0`, `native_toolchain_c ^0.19.0`, `lints ^6.1.0`
 - Upgrade vendored H3 C library from 4.4.1 → 4.5.0 ([upstream notes](https://github.com/uber/h3/releases/tag/v4.5.0))
 - Add `reverseDirectedEdge` — returns a directed edge with origin and destination swapped (FFI + stub; throws `UnsupportedError` on web pending h3-js 4.5)
 - `gridPathCells` is now bidirectional: `gridPathCells(a, b)` reversed equals `gridPathCells(b, a)` (H3 v4.5.0 behavior change)
