@@ -192,7 +192,7 @@ void main() {
       expect(H3Version.minor, equals(5));
       expect(H3Version.patch, equals(0));
       expect(H3Version.native, equals('4.5.0'));
-      expect(H3Version.package, equals('1.0.5'));
+      expect(H3Version.package, equals('1.0.6'));
     });
   });
 

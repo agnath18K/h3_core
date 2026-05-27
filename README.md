@@ -1,7 +1,7 @@
 # h3_core
 
 [![pub package](https://img.shields.io/pub/v/h3_core.svg)](https://pub.dev/packages/h3_core)
-[![CI](https://github.com/agnath18K/h3_core/actions/workflows/ci.yml/badge.svg)](https://github.com/agnath18K/h3_core/actions/workflows/ci.yml)
+[![CI](https://github.com/wayqteam/h3_core/actions/workflows/ci.yml/badge.svg)](https://github.com/wayqteam/h3_core/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![H3 Version](https://img.shields.io/badge/H3-v4.5.0-green.svg)](https://github.com/uber/h3/releases/tag/v4.5.0)
 
