@@ -382,6 +382,17 @@ List<H3Index> originToDirectedEdges(H3Index origin) {
   });
 }
 
+/// Returns the directed edge with origin and destination swapped.
+///
+/// Since H3 v4.5.0.
+H3Index reverseDirectedEdge(H3Index edge) {
+  return using((Arena arena) {
+    final out = arena<Uint64>();
+    checkH3Error(c.reverseDirectedEdge(edge.toInt(), out));
+    return H3Index.fromInt(out.value);
+  });
+}
+
 /// Returns the boundary vertices of the directed [edge].
 CellBoundary directedEdgeToBoundary(H3Index edge) {
   return using((Arena arena) {
@@ -750,19 +761,19 @@ List<H3Index> getPentagons(int resolution) {
 /// Version constants for the h3_core package and the underlying H3 C library.
 abstract final class H3Version {
   /// The h3_core Dart package version.
-  static const String package = '1.0.1';
+  static const String package = '1.0.5';
 
   /// The H3 C library version string.
-  static const String native = '4.4.1';
+  static const String native = '4.5.0';
 
   /// The H3 C library major version.
   static const int major = 4;
 
   /// The H3 C library minor version.
-  static const int minor = 4;
+  static const int minor = 5;
 
   /// The H3 C library patch version.
-  static const int patch = 1;
+  static const int patch = 0;
 }
 
 // Async — runs on isolate to keep the UI thread free.

@@ -353,6 +353,18 @@ CellBoundary directedEdgeToBoundary(H3Index edge) {
   });
 }
 
+/// Returns the directed edge with origin and destination swapped.
+///
+/// Since H3 v4.5.0. h3-js does not yet expose this function (latest h3-js
+/// is 4.4.0 at time of writing); calling this throws [UnsupportedError]
+/// on web until h3-js 4.5 is published on npm.
+H3Index reverseDirectedEdge(H3Index edge) {
+  throw UnsupportedError(
+    'reverseDirectedEdge requires h3-js >= 4.5.0, which is not yet '
+    'published on npm. Available on native via dart:ffi.',
+  );
+}
+
 // Vertices
 
 /// Returns the vertex at index [vertexNum] (0–5) of the [cell].
@@ -582,19 +594,19 @@ List<H3Index> getPentagons(int resolution) {
 /// Version constants for the h3_core package and the underlying H3 C library.
 abstract final class H3Version {
   /// The h3_core Dart package version.
-  static const String package = '1.0.1';
+  static const String package = '1.0.5';
 
   /// The H3 C library version string.
-  static const String native = '4.4.1';
+  static const String native = '4.5.0';
 
   /// The H3 C library major version.
   static const int major = 4;
 
   /// The H3 C library minor version.
-  static const int minor = 4;
+  static const int minor = 5;
 
   /// The H3 C library patch version.
-  static const int patch = 1;
+  static const int patch = 0;
 }
 
 // Async — on web h3-js is sync, so these just wrap in a future.

@@ -8,8 +8,8 @@ import 'package:logging/logging.dart';
 import 'package:native_toolchain_c/native_toolchain_c.dart';
 
 const _h3VersionMajor = '4';
-const _h3VersionMinor = '4';
-const _h3VersionPatch = '1';
+const _h3VersionMinor = '5';
+const _h3VersionPatch = '0';
 
 void main(List<String> args) async {
   await build(args, (input, output) async {

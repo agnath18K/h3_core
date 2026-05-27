@@ -189,10 +189,10 @@ void main() {
   group('H3Version', () {
     test('version constants', () {
       expect(H3Version.major, equals(4));
-      expect(H3Version.minor, equals(4));
-      expect(H3Version.patch, equals(1));
-      expect(H3Version.native, equals('4.4.1'));
-      expect(H3Version.package, equals('1.0.1'));
+      expect(H3Version.minor, equals(5));
+      expect(H3Version.patch, equals(0));
+      expect(H3Version.native, equals('4.5.0'));
+      expect(H3Version.package, equals('1.0.5'));
     });
   });
 
